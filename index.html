@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home page</title>
+<style>
+
+body{
+  min-width: 255px;
+  max-width: 450;
+  max-height: 300px;
+}
+
+.container {
+
+  text-align: center;
+  align-items: center; 
+  height: 50%; 
+  min-width: 255px;
+}
+ 
+.image-button-wrapper {
+  margin: 10px 0;
+  display: inline-block;
+    
+}
+ 
+.button {
+/*font: inherit;
+  position: relative;
+  isolation: isolate;*/
+  background-color: #426cf5;
+  color: white;
+  box-shadow: 0 7px 18px #888888; 
+  padding: 10px 20px;
+  border: 0.2em solid #42a4f5;
+  border-radius: 100vw;
+  transition: background-color 250ms;
+  cursor: pointer;
+  min-width: 200px;
+  transition: box-shadow 0.3s ease-in-out;
+  display: block; /* Make buttons block level */
+  margin: 5px 20px; /* Center buttons horizontally and gap between */
+
+  
+}
+ 
+.img1 {
+   width: 50px;
+  /* display: block; /* Center images horizontally */
+  margin: 0px;
+  animation: phoneRing 8s infinite;
+}
+
+.img2 {
+   width: 40px;
+    padding-bottom: 5px;
+  /* display: block; /* Center images horizontally */
+  margin: 5px;
+   opacity: 0.9;
+  animation: phoneRing 8s infinite;
+}
+
+
+    @keyframes phoneRing {
+        0%, 100% {
+         transform: translateY(0);
+        }
+        50% {
+         transform: translateY(-10px);
+        }
+    }
+
+
+.button:hover {
+  box-shadow: 0 8px 15px rgba(0, 123, 255, 0.5);
+  background-color: #42a4f5 !important;
+}
+ 
+.button:active {
+  box-shadow: 0 15px 15px rgba(0, 123, 255, 0.3);
+  background-color: #000000 !important; 
+  transform: translateY(4px) !important;}
+
+
+
+  #chatBtn {
+            background-color: black; /* Set the background color to black */
+            color: white; /* Set the text colour to white */
+            opacity: 0.3; /* Set the initial transparency (when disabled) */
+            cursor: not-allowed; /* Show a "not allowed" cursor when disabled */
+        }
+
+  #callBtn {
+            background-color: black; /* Set the background color to black */
+            color: white; /* Set the text colour to white */
+            opacity: 0.3; /* Set the initial transparency (when disabled) */
+            cursor: not-allowed; /* Show a "not allowed" cursor when disabled */
+        }
+
+/*button > span {
+Position: absolute;
+z-index: -1;
+width: 33.333%;
+height: 100%;
+background: red;
+}*/
+
+</style>
+</head>
+<body>
+ <p id="text" Justify="center"></p> 
+<div class="container">
+  <div   class="image-button-wrapper" >
+    <img class = "img1" src="https://cdn-icons-png.flaticon.com/512/9204/9204606.png"   alt="Chat Icon">
+    <button id="chatBtn"  class="button">Chat</button>
+  </div>
+ 
+<div class="image-button-wrapper" onclick="window.location.href='./callback/index.callback.html';">
+  <img class="img2" src="https://cdn-icons-png.flaticon.com/512/8862/8862439.png" alt="Phone Icon">
+  <button id="callBtn" class="button" onclick="requestCallback()">Callback</button>
+</div>
+
+</div>
+<script>
+  //not currently used as below script supersedes this
+  //function openChat() {
+   // window.open('./chat/index.chat.html', 'newwindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=no, modal=yes, width=500, height=600');
+   // return false;
+ // }
+
+
+
+  const chatBtn = document.getElementById("chatBtn");
+const callBtn = document.getElementById("callBtn");// Check if the current time is between 8:30 AM and 4:30 PM
+const text = document.getElementById("text");
+  const now = new Date();
+  const dayOfWeek = now.getDay();
+  const currentHour = now.getHours();
+  const currentMinutes = now.getMinutes();
+
+  if (((currentHour == 8 && currentMinutes >= 30)  || (currentHour > 8 && currentHour < 16) || (currentHour == 16 && currentMinutes <= 29)) && (dayOfWeek >=1 && dayOfWeek <=5)) 
+  {
+    chatBtn.removeAttribute("disabled"); // Enable the button
+    chatBtn.style.opacity = 1; // Set full opacity
+    chatBtn.style.cursor = "pointer"; // Change cursor to pointer
+    chatBtn.style.background = '#426cf5'; // Background colour blue
+    chatBtn.style.border = '0.2em solid #42a4f5'; //bhange border
+
+    chatBtn.addEventListener("click", () => {
+      window.open('./chat/index.chat.html', 'newwindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizable=yes, modal=yes, width=400px, height=650px');
+    });
+
+  } else {
+    chatBtn.disabled = true;
+    chatBtn.textContent = "Chat available between " + "\n" +
+    "Mon-Fri 8:30 AM & 4:30 PM";
+  }
+
+
+
+if (((currentHour == 7 && currentMinutes >= 29)  || (currentHour > 7 && currentHour < 21) || (currentHour == 21 && currentMinutes <= 29)) && (dayOfWeek >=1 && dayOfWeek <=5)) 
+  {
+callBtn.removeAttribute("disabled"); // Enable the button
+callBtn.style.opacity = 1; // Set full opacity
+callBtn.style.cursor = "pointer"; // Change cursor to pointer
+callBtn.style.background = '#426cf5'; // Background colour blue
+callBtn.style.border = '0.2em solid #42a4f5'; //bhange border
+
+  } else {
+
+  callBtn.disabled = true;
+
+  callBtn.textContent = "Callback available between " + "\n" +
+    "Mon-Fri 7:30 AM & 9:30 PM";
+    text.textContent = "Chat and Callback currently offline.";
+  }
+
+
+
+
+</script>
+
+</body>
+</html>

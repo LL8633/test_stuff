@@ -1,0 +1,49 @@
+/* Place your CSS styles in this file */
+
+.container {
+
+  text-align: center;
+ align-items: center; 
+   height: 50%; 
+}
+ 
+.image-button-wrapper {
+  margin: 20px 0;
+  display: inline-block;
+  
+}
+ 
+.button {
+  background-color: #007bff;
+  color: white;
+  box-shadow: 0 7px #999; 
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out;
+  display: block; /* Make buttons block level */
+  margin: 10px 30px; /* Center buttons horizontally and gap between */
+
+  
+}
+ 
+.button img {
+ width: 100px;
+  height: auto;
+  display: block; /* Center images horizontally */
+  margin: 5px;
+}
+ 
+.button:hover {
+  box-shadow: 0 8px 15px rgba(0, 123, 255, 0.5);
+}
+ 
+.button:active {
+  box-shadow: 0 15px 15px rgba(0, 123, 255, 0.3);
+  background-color: #000000 !important; 
+  transform: translateY(4px) !important;}
+}
+
+    

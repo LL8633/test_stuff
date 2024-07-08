@@ -1,0 +1,137 @@
+
+ 
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Search</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f4f7;
+}
+ 
+.container {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+ 
+#search-bar {
+    width: 80%;
+    padding: 10px;
+    font-size: 18px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+ 
+#results {
+    margin-top: 20px;
+    text-align: left;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+ 
+#results div {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+ 
+#results div:hover {
+    background-color: #e1e8ed;
+}
+ 
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+}
+ 
+button:hover {
+    background-color: #0056b3;
+}
+ 
+.hidden {
+    display: none;
+}
+
+     </style>
+</head>
+
+
+  <div class="container">
+    <h1>Help Us Help You</h1>
+    <input type="text" id="search-bar" placeholder="Describe your issue...">
+    <div id="results"></div>
+    <button id="help-button" onclick="showHelpOptions()">I still need help</button>
+    <div id="help-options" class="hidden">
+        <button onclick="window.location.href='https://example.com/help2'">Log an Incident</button>
+        <button onclick="window.location.href='https://example.com/help3'">Request a Callback</button>
+    </div>
+</div>
+
+
+  
+  
+  
+  
+  
+    <script> 
+    
+let debounceTimer;
+document.getElementById('search-bar').addEventListener('input', function() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+        let query = this.value;
+        if (query.length > 2) { // Start searching after 3 characters
+            fetchResults(query);
+        } else {
+            document.getElementById('results').innerHTML = '';
+        }
+    }, 500); // Adjust the debounce delay as needed
+});
+ 
+function fetchResults(query) {
+    fetch('search.php?q=' + query)
+        .then(response => response.json())
+        .then(data => {
+            let resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+            data.results.forEach(item => {
+                let resultItem = document.createElement('div');
+                resultItem.innerText = item.title;
+                resultItem.onclick = () => alert('You selected: ' + item.title);
+                resultsDiv.appendChild(resultItem);
+            });
+        })
+        .catch(error => console.error('Error fetching results:', error));
+}
+ 
+function showHelpOptions() {
+    document.getElementById('help-button').style.display = 'none';
+    document.getElementById('help-options').classList.remove('hidden');
+}
+</script>
+</body>
+</html>

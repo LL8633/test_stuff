@@ -1,0 +1,56 @@
+ <!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>Sam Cooper - Self-Service chat</title>
+
+        <!-- Load external CSS styles -->
+        <!-- <link rel="stylesheet" href="styles.chat.css"> onclick="alert('it worked')"; -->
+
+    </head>
+
+        <body onload="load8x8(); load8x8(); " >
+<!-- Place this code snippet anywhere you want the button to appear in your page. If no button has been configured in the chat script, it will not show up nor take any space. -->
+<div    id="__8x8-chat-button-container-script_476198231663b5eba8aede6.46975763"></div>
+
+<!-- This script will not interfere with the button layout, you just need to include it in the same page. It must also be within the <body> section of the page, preferably just before the ending tag. -->
+<script type="text/javascript">
+ function load8x8() {
+    //alert('here');
+    window.__8x8Chat = {
+        uuid: "script_476198231663b5eba8aede6.46975763",
+        tenant: "YmxhY2twb29sdGVhY2hpbmc4MzQwMQ",
+        channel: "ICT Service Desk Primary Channel",
+        channelUuid: "y1QtRI3vQhWwgwyVi5Xd7Q",
+        domain: "https://vcc-eu6.8x8.com",
+        path: "/.",
+        buttonContainerId: "__8x8-chat-button-container-script_476198231663b5eba8aede6.46975763",
+        align: "center"
+
+    };
+
+    (function() {
+        var se = document.createElement("script");
+        se.type = "text/javascript";
+        se.async = true;
+        se.src = window.__8x8Chat.domain + window.__8x8Chat.path + "/CHAT/common/js/chat.js";
+
+        var os = document.getElementsByTagName("script")[0];
+        os.parentNode.insertBefore(se, os);
+    })();
+}
+
+function delayClick() {
+  document.getElementById("__8x8-chat-button-container-script_476198231663b5eba8aede6.46975763").click();
+}
+
+setTimeout(delayClick, 3000);
+
+</script>
+
+        </body>
+
+
+</html>
